@@ -150,7 +150,10 @@ In the project, I primarily focused on the finally block technique. I realized t
 - Given that the three counters are independent, which approach provides better concurrency and why?
 
 **Your Answer**:
-
+i choose one lock for all counters because the counters are updated quickly and do not involve heavy compution , so one lock is easier to implement.
+coarse grained is simpler but has lower performance if there were mmany process hitting the counters at once.
+fine grained better performance because diffrent counters there would not be a deadlock but the code may be more complex.
+fine grained will provide better concurrency because the counters do not depend on each others
 [Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
 
 ---

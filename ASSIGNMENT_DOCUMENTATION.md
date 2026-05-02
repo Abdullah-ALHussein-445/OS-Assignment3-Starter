@@ -322,10 +322,20 @@ https://github.com/Abdullah-ALHussein-445/OS-Assignment3-Starter
 **Number of commits**: 
 12
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. set id
+2. task 1
+3. task 2
+4. task 3
+5. update doucmentaion
+6. update doucmentaion
+7. update doucmentaion
+8. update doucmentaion
+9. enhance deadlock prevention
+10. enhance locking strategy
+11. revise synchronization
+12. update doucmentaion
+13. update doucmentaion
+
 
 ---
 

@@ -43,30 +43,30 @@ verified the final statistics in the console
 45 mins
 ---
 
-### Entry 2 - [Date, Time]
-**What I implemented**: 
+### Entry 2 - 5\2 6am
+**What I implemented**:protect the executionlog 
 
 **Challenges encountered**: 
-
+the arraylist is not thread safe
 **How I solved it**: 
-
+wrapped the operation within the lock 
 **Testing approach**: 
-
+check the size of the executionlog in the output and compare it with the total
 **Time spent**: 
-
+20mins
 ---
 
-### Entry 3 - [Date, Time]
+### Entry 3 - 5/2 8am
 **What I implemented**: 
-
+added samaphore to control cpu accsess and implement try catch finally 
 **Challenges encountered**: 
-
+posability of deadlock
 **How I solved it**: 
-
+used acquire in the start and release in finally
 **Testing approach**: 
-
+monitored the console output to confirm that onlu one process executes at a time
 **Time spent**: 
-
+90 mins
 ---
 
 ### Entry 4 - [Date, Time]

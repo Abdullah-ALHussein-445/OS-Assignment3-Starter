@@ -134,7 +134,10 @@ I used ReentrantLock in SharedResources for the counters (contextSwitchCount, et
 **Q**: What is deadlock? Explain TWO prevention techniques and what you did to prevent deadlocks in your code.
 
 **Your Answer**:
-
+two or more process are stuck forever because each one is waiting for a resource that the other one is holding. None of them can move, and the program just freezes.
+Resource Ordering: it assign a specific order to the resources (like always locking A before B). This prevents the "circular wait" condition where threads keep waiting for each other in a loop.
+​Using finally blocks: By ensur that every lock or semaphore acquired is always released in a finally block, we guarantee that no thread holds onto a resource indefinitely, even if an error occurs
+In the project, I primarily focused on the finally block technique. I realized that if a thread gets interrupted (e.g., InterruptedException) while holding the cpuSemaphore, it could crash the whole simulation and leave the semaphore locked forever. So, I wrapped my acquire() call in a try block and placed the release() call inside a finally block. This way, no matter what happens (if it finishes normally or if it crashes), the semaphore is guaranteed to be released, which keeps the simulation running smoothly without any deadlocks.
 [Your answer here - reference try-finally blocks, lock ordering, etc.]
 
 ---

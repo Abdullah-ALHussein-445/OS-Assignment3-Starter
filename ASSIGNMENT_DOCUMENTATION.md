@@ -162,52 +162,77 @@ fine grained will provide better concurrency because the counters do not depend 
 
 ### Critical Section #1: Counter Variables
 
-**Which variables**: 
+**Which variables**:contextSwitchCount,completedProcessCount,totalWaitingTime 
 
-**Why they need protection**: 
+**Why they need protection**: because updating time not atomic
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: Reentrantlock
 
 **Code snippet**:
 ```java
 // Paste your implementation here
+
+lock.lock(); 
+try {
+    contextSwitchCount++;
+    completedProcessCount++;
+    totalWaitingTime += waitingTime;
+} finally {
+    lock.unlock(); // Always release the lock
+}
 ```
 
-**Justification**: 
+**Justification**: simple, ensure mutual exclusion and prevents race conditions
 
 ---
 
 ### Critical Section #2: Execution Log
 
-**What resource**: 
+**What resource**:exectionLog the arraylist 
 
-**Why it needs protection**: 
+**Why it needs protection**: because the arraylist not thread safe
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: reentrantlock
 
 **Code snippet**:
 ```java
 // Paste your implementation here
+
+lock.lock();
+try {
+    executionLog.add("Process " + processID + " finished at " + timestamp);
+} finally {
+    lock.unlock(); // Always release the lock
+}
 ```
 
-**Justification**: 
+**Justification**: protect the structural integrity of the list
 
 ---
 
 ### Critical Section #3: CPU Semaphore
 
-**Purpose of semaphore**: 
+**Purpose of semaphore**: to control access to the cpu and limit number of processes that can exexute
 
-**Number of permits and why**: 
+**Number of permits and why**: 1, to ensure that only one process can access the cpu at a given time
 
-**Where implemented**: 
+**Where implemented**:in process class in method run 
 
 **Code snippet**:
 ```java
 // Paste your implementation here
+
+cpuSemaphore.acquire();
+try {
+     ...
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+} finally {
+    cpuSemaphore.release(); // Ensure release to prevent Deadlocks
+}
 ```
 
-**Effect on program behavior**: 
+**Effect on program behavior**: this ensure that the simulation run in controlled way by acquiring the semaphore before exexcution and relesing it in the finally block
 
 ---
 

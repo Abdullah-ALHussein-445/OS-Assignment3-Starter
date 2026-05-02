@@ -248,44 +248,45 @@ try {
 
 **Results**: 
 (Show that running multiple times produces consistent, correct results)
+after running 5 times the final output for contextSwitchCount , completedProcessCount and totalWaitingTine remained identical in every run
 
 **Why synchronization is necessary**: 
 (Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
-
+Without synchronization, the counters would be subjected to Race Conditions. For example, when multiple threads try to update totalWaitingTime simultaneously, they might read the same old value, add their local time, and overwrite each other's updates
 **Conclusion**: 
-
+By using ReentrantLock for the shared resources and a Semaphore for CPU access, the program consistently produces the correct results,
 ---
 
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
-**Testing procedure**: 
+**Testing procedure**: i runed the program for more than one time to see if the arraylist would throw an error
 
-**Results**: 
+**Results**: the program run seccessfully
 
-**What this proves**: 
+**What this proves**: that the reentrantlock is effectively preventing multiple threads from modifying the list structure simultaneously
 
 ---
 
 ### Test 3: Correctness Verification
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 
-**Expected values**: 
+**Expected values**:Based on the input parameters (number of processes and their service times), I calculated the expected total context switches and the number of completed processes using the logic of the algorithm.
 
-**Actual values**: 
+**Actual values**: The program's final report matched my calculated values exactly: the total number of context switches and the completed processes were consistent with the expected theoretical output.
 
-**Analysis**: 
+**Analysis**: This verification confirms that the synchronization logic is not only preventing crashes but also maintaining the correctness of the simulation
 
 ---
 
 ### Test 4: Different Scenarios
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
 
-**Purpose**: 
+**Purpose**: to test the stability and scalability of the sychronization
 
-**Results**: 
+**Results**: the program handled the load without deadlock 
 
-**What I learned**: 
+**What I learned**: the improtance of writing effecient critical sections
 
 ---
 
@@ -317,7 +318,7 @@ I’d tell them to imagine a public restroom with only one stall. If there's no 
 ## Part 6: GitHub Repository Information
 
 **Repository URL**: 
-
+https://github.com/Abdullah-ALHussein-445/OS-Assignment3-Starter
 **Number of commits**: 
 12
 **Commit messages**: 

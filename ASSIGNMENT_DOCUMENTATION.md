@@ -106,7 +106,15 @@ monitored the console output to confirm that onlu one process executes at a time
 **Your Answer**:
 
 [Your answer here - 4-6 sentences with code examples]
-
+Race Condition in Shared Counters (contextSwitchCount, completedProcessCount, totalWaitingTime):
+​The Problem: These variables were being updated by multiple threads at the same time.
+​Why it is a problem: A simple line like count++ looks easy, but for the CPU, it's actually three separate steps: (1) read the value, (2) add one to it, (3) save it back. If two threads try to do this at the exact same moment they both read the same old value, increment it independently, and save it. So, one update gets "lost" in the process.
+​The Result: The final statistics like the total waiting time were just wrong because some updates didn't make it to the final count.
+Race Condition in executionLog (ArrayList):
+​The Problem: I was using a standard ArrayList to keep track of the logs but I found that ArrayList isn't "thread-safe."
+​Why it is a problem: When multiple threads try to add (.add()) a log entry at the same time, they get in each other's way while trying to resize or update the internal list structure.
+​The Result: The program would sometimes crash with a ConcurrentModificationException  or some logs would simply disappear.
+I used a ReentrantLock. For anything shared—like those counters or the list—I wrapped the update code inside lock.lock() and finally { lock.unlock(); }. This basically forces the threads to wait for their turn.
 ---
 
 ### Question 2: Locks vs Semaphores

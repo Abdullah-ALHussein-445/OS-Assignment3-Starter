@@ -119,9 +119,13 @@ I used a ReentrantLock. For anything shared—like those counters or the list—
 
 ### Question 2: Locks vs Semaphores
 **Q**: Explain the difference between ReentrantLock and Semaphore. Where did you use each in your code and why?
-
 **Your Answer**:
-
+ReentrantLock: Only one thread can have the key at a time. If another thread wants to enter, it has to wait until the first one leaves and returns the key.
+​Semaphore: it like a bouncer at a club with a limited number of spots. It doesn't necessarily mean just one person can enter; you can set it to allow a certain number of threads (permits) to enter at the same time. If the limit is reached, others have to wait.
+I used ReentrantLock in SharedResources for the counters (contextSwitchCount, etc.) and the executionLog.
+​ ,Because I needed to make sure that these specific resources are modified by only one thread at a time to prevent any "Race Conditions" or data corruption.
+​I used Semaphore in the Process class to control the CPU access.
+​Even though I set the permit to 1 (like a lock), the main reason for using a Semaphore here is to control the flow of execution and limit how many processes are actively running on the "CPU" at once. It’s better for managing shared resources where you might eventually want to allow more than one process to run simultaneously 
 [Your answer here - explain your implementation choices]
 
 ---

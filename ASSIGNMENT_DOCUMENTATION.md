@@ -1,9 +1,8 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
-**Date Submitted**: [Submission Date]
-
+**Student Name**: عبدالله الحسين 
+**Student ID**: 445052833 
+**Date Submitted**: 5\2
 ---
 
 ## 🎥 VIDEO DEMONSTRATION LINK (REQUIRED)
@@ -31,17 +30,17 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - 5\1 9pm
 **What I implemented**: 
-
+use reentrantlock to protect critical section
 **Challenges encountered**: 
-
+shared counters
 **How I solved it**: 
-
+defined a static final reentranlock
 **Testing approach**: 
-
+verified the final statistics in the console
 **Time spent**: 
-
+45 mins
 ---
 
 ### Entry 2 - [Date, Time]
